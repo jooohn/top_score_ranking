@@ -16,7 +16,7 @@ class ScoresController < ApplicationController
   def create
     score = Score.new(params.permit(:player, :score, :time))
     if score.save
-      render json: score
+      render status: 201, json: score
     else
       render status: 400, json: { errors: score.errors }
     end
