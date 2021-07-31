@@ -9,7 +9,9 @@ class ScoresController < ApplicationController
   end
 
   def show
-    @score = Score.find(params.require(:id))
+    @score = Score.find_by(id: params.require(:id))
+    return head 404 if @score.blank?
+
     render json: @score
   end
 
@@ -23,7 +25,9 @@ class ScoresController < ApplicationController
   end
 
   def destroy
-    @score = Score.find(params.require(:id))
+    @score = Score.find_by(id: params.require(:id))
+    return head 404 if @score.blank?
+
     @score.destroy!
     render head: 200
   end
