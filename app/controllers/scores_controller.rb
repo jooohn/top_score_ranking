@@ -1,7 +1,7 @@
 class ScoresController < ApplicationController
   DEFAULT_SEARCH_PARAMS = {
     limit: 20,
-  }
+  }.with_indifferent_access
 
   def index
     scores = ScoreSearchQuery.new(search_params).to_scope.to_a
